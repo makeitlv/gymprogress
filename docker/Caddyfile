@@ -1,9 +1,7 @@
 {
 	{$CADDY_GLOBAL_OPTIONS}
 
-	frankenphp {
-		{$FRANKENPHP_CONFIG}
-	}
+	frankenphp
 
 	# https://caddyserver.com/docs/caddyfile/directives#sorting-algorithm
 	order mercure after encode
@@ -45,8 +43,6 @@
 	}
 
 	vulcain
-
-	{$CADDY_SERVER_EXTRA_DIRECTIVES}
 
 	# Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
 	header ?Permissions-Policy "browsing-topics=()"
