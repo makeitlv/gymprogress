@@ -55,7 +55,7 @@ if [ "$1" = 'frankenphp' ] || [ "$1" = 'php' ] || [ "$1" = 'artisan' ]; then
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX storage
 
 	if [ "$APP_ENV" != "prod" ]; then
-		chown "$(whoami)":"$(whoami)" -R ./
+		chown 1000:1000 -R ./
 	fi
 fi
 
