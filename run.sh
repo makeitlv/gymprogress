@@ -8,6 +8,10 @@ if [ $# -gt 0 ]; then
 	elif [ "$1" == "composer" ]; then
 		shift 1
 		docker-compose exec php php -d memory_limit=-1 /usr/bin/composer "$@"
+	elif [ "$1" == "npm" ]; then
+		shift 1
+		docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app node:21-bullseye npm "$@"
+		docker-compose exec php chown -R $(id -u):$(id -g) .
 	elif [ "$1" == "fixperm" ]; then
 		shift 1
 		docker-compose exec php chown -R $(id -u):$(id -g) .
