@@ -10,11 +10,6 @@
 
     <rule ref="PSR12"/>
 
-    <!-- Remove after 3.8.0 -->
-    <rule ref="PSR1.Files.SideEffects">
-      <severity>0</severity>
-    </rule>
-
     <file>app/</file>
     <file>public/</file>
     <file>config/</file>
