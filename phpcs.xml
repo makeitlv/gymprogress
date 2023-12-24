@@ -15,4 +15,7 @@
     <file>config/</file>
     <file>routes/</file>
     <file>tests/</file>
+
+    <exclude-pattern>/public/index.php</exclude-pattern>
+    <exclude-pattern>/tests/Pest.php</exclude-pattern>
 </ruleset>
