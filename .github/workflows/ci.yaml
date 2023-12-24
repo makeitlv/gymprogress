@@ -45,7 +45,10 @@ jobs:
           docker-compose exec -T php php -d memory_limit=-1 ./vendor/bin/deptrac analyse
       - name: Tests
         run: |
-          docker-compose exec php php -d memory_limit=-1 ./vendor/bin/pest
+          docker-compose exec -T php cp .env.example .env
+          docker-compose exec -T php php -d memory_limit=-1 artisan key:generate
+          docker-compose exec -T php php -d memory_limit=-1 artisan config:cache
+          docker-compose exec -T php php -d memory_limit=-1 ./vendor/bin/pest
       - name: Run migrations
         run: |
           docker compose exec -T php php artisan db:wipe
