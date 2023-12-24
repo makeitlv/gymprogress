@@ -39,9 +39,13 @@ jobs:
       - name: Check HTTPS reachability
         run: curl -vk -o /dev/null https://localhost
       - name: Code quality
-        run: ./run.sh qa
+        run: |
+          docker-compose exec -T php php -d memory_limit=-1 ./vendor/bin/phpcs --standard=phpcs.xml
+          docker-compose exec -T php php -d memory_limit=-1 ./vendor/bin/phpstan
+          docker-compose exec -T php php -d memory_limit=-1 ./vendor/bin/deptrac analyse
       - name: Tests
-        run: ./run.sh test
+        run: |
+          docker-compose exec php php -d memory_limit=-1 ./vendor/bin/pest
       - name: Run migrations
         run: |
           docker compose exec -T php php artisan db:wipe
