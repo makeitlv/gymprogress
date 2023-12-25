@@ -45,7 +45,7 @@ CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]
 
 FROM base as dev
 
-ENV APP_ENV=dev XDEBUG_MODE=off
+ENV APP_ENV=local XDEBUG_MODE=off
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
