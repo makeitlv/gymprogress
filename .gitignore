@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 .phpcs-cache
 .deptrac.cache
+/public/vendor/telescope

@@ -35,3 +35,4 @@ storage/framework/views/*
 .env.test
 .phpcs-cache
 .deptrac.cache
+/public/vendor/telescope
