@@ -17,3 +17,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     tty: true
+
+  database:
+    ports:
+      - "127.0.0.1:5432:5432"
