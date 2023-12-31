@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Bus;
+namespace App\Bus\Query;
 
 use App\Bus\QueryInterface;
 use Illuminate\Bus\Dispatcher;

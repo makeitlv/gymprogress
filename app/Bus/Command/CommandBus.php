@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Bus;
+namespace App\Bus\Command;
 
 use Illuminate\Bus\Dispatcher;
 
