@@ -33,10 +33,15 @@ final class BusMapper
             ->contains(self::BASE_NAMESPACE);
 
         foreach ($finder as $file) {
+            /** @var class-string|null $class */
             $class = $this->getClassFromFile($file->getRealPath());
 
             if ($class !== null) {
                 $interfaces = class_implements($class);
+
+                if ($interfaces === false) {
+                    return;
+                }
 
                 foreach ($interfaces as $interface) {
                     switch ($interface) {
@@ -60,6 +65,10 @@ final class BusMapper
         $namespace = $class = null;
         $contents = file_get_contents($filePath);
 
+        if ($contents === false) {
+            return null;
+        }
+
         if (preg_match("/namespace\s+([^;]+);/", $contents, $matches)) {
             $namespace = $matches[1];
         }
@@ -75,6 +84,11 @@ final class BusMapper
         return null;
     }
 
+    /**
+     *
+     * @template T of object
+     * @param class-string<T> $class
+     */
     private function registerCommand(Dispatcher $bus, string $class): void
     {
         $handlerClass = $this->getHandlerClassName(
@@ -87,6 +101,11 @@ final class BusMapper
         }
     }
 
+    /**
+     *
+     * @template T of object
+     * @param class-string<T> $class
+     */
     private function registerQuery(Dispatcher $bus, string $class): void
     {
         $handlerClass = $this->getHandlerClassName(
@@ -99,6 +118,11 @@ final class BusMapper
         }
     }
 
+    /**
+     *
+     * @template T of object
+     * @param class-string<T> $class
+     */
     private function registerEvent(Dispatcher $bus, string $class): void
     {
         $handlerClass = $this->getHandlerClassName(
@@ -111,6 +135,11 @@ final class BusMapper
         }
     }
 
+    /**
+     *
+     * @template T of object
+     * @param class-string<T> $messageClass
+     */
     private function getHandlerClassName(
         string $messageClass,
         string $handlerInterface,

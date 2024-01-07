@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Bus\Query;
 
-use App\Bus\QueryInterface;
+use App\Bus\Query\QueryInterface;
 use Illuminate\Bus\Dispatcher;
 
 final readonly class QueryBus implements QueryBusInterface
